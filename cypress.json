@@ -1,0 +1,11 @@
+{
+    "baseUrl": "https://openweathermap.org",
+    "defaultCommandTimeout": 4000,
+    "fixturesFolder": "cypress/Datasets",
+    "integrationFolder": "cypress/Tests",
+    "screenshotsFolder": "cypress/Attachment/Screenshots",
+    "supportFile": "cypress/Actions",
+    "video": true,
+    "videosFolder": "cypress/Attachment/Videos",
+    "videoUploadOnPasses": false
+}

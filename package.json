@@ -1,0 +1,26 @@
+{
+  "name": "vdc_assignment",
+  "version": "1.0.0",
+  "description": "Show off hands-on experience on Automation Testing",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^7.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "cy:run:all": "npx cypress run --spec 'cypress/Tests/*'",
+    "cy:report:combine": "npx mochawesome-merge cypress/Reports/Mochawesome/*.json -o cypress/Reports/FinalReport/result.json",
+    "cy:report:generate": "npx marge cypress/Reports/FinalReport/result.json -f result -o cypress/Reports/FinalReport",
+    "cy:report:remove": "node cypress/Reports/ReportConfig/RemoveReports.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daosonhai/vdc_weather_tests.git"
+  },
+  "author": "Harris Dao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daosonhai/vdc_weather_tests/issues"
+  },
+  "homepage": "https://github.com/daosonhai/vdc_weather_tests#readme"
+}
