@@ -1,0 +1,11 @@
+{
+    "reporterEnabled": "mochawesome",
+    "mochawesomeReporterOptions": {
+        "reportDir": "cypress/Reports/Mochawesome",
+        "charts": true,
+        "quiet": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+    }
+}

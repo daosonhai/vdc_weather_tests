@@ -3,5 +3,5 @@ import './SERP'
 
 
 Cypress.Cookies.defaults({
-    preserve:[Cookie.stickFooterPanel]
+    preserve: [Cookie.stickFooterPanel]
 })

@@ -6,7 +6,14 @@
   "dependencies": {
     "cypress": "^7.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress-image-snapshot": "^4.0.1",
+    "cypress-multi-reporters": "^1.5.0",
+    "fs-extra": "^9.1.0",
+    "mochawesome": "^6.2.2",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.2.0"
+  },
   "scripts": {
     "cy:run:all": "npx cypress run --spec 'cypress/Tests/*'",
     "cy:report:combine": "npx mochawesome-merge cypress/Reports/Mochawesome/*.json -o cypress/Reports/FinalReport/result.json",
