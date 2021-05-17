@@ -7,5 +7,13 @@
     "supportFile": "cypress/Actions",
     "video": true,
     "videosFolder": "cypress/Attachment/Videos",
-    "videoUploadOnPasses": false
+    "videoUploadOnPasses": false,
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "cypress/Reports/ReportConfig/ReporterOptions.json"
+    },
+    "testFiles": "**/*.feature",
+    "env": {
+        "baseUrlApi": "https://openweathermap.org"
+    }
 }

@@ -1,0 +1,81 @@
+{
+    "message": "accurate",
+    "cod": "200",
+    "count": 2,
+    "list": [
+        {
+            "id": 6167865,
+            "name": "Toronto",
+            "coord": {
+                "lat": 43.7001,
+                "lon": -79.4163
+            },
+            "main": {
+                "temp": 289.59,
+                "feels_like": 288.07,
+                "temp_min": 287.59,
+                "temp_max": 292.15,
+                "pressure": 1022,
+                "humidity": 30
+            },
+            "dt": 1621213753,
+            "wind": {
+                "speed": 0.15,
+                "deg": 208
+            },
+            "sys": {
+                "country": "CA"
+            },
+            "rain": null,
+            "snow": null,
+            "clouds": {
+                "all": 8
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01n"
+                }
+            ]
+        },
+        {
+            "id": 5174095,
+            "name": "Toronto",
+            "coord": {
+                "lat": 40.4642,
+                "lon": -80.6009
+            },
+            "main": {
+                "temp": 287.68,
+                "feels_like": 286.62,
+                "temp_min": 286.48,
+                "temp_max": 289.15,
+                "pressure": 1023,
+                "humidity": 55
+            },
+            "dt": 1621213698,
+            "wind": {
+                "speed": 1.96,
+                "deg": 57
+            },
+            "sys": {
+                "country": "US"
+            },
+            "rain": null,
+            "snow": null,
+            "clouds": {
+                "all": 75
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04n"
+                }
+            ]
+        }
+    ]
+}

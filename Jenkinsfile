@@ -5,7 +5,6 @@ node('master') {
         }
 
         stage('Clearing test environment') {
-            bat label: 'Deleting Cypress Cache', script: 'npm run cy:cache:delete'
             bat label: 'Removing previous reports', script: 'npm run cy:report:remove'            
         }
 

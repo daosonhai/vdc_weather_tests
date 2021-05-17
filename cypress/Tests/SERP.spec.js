@@ -9,7 +9,7 @@ import Modal from '../Interface/Modal';
 
 Cypress.config('defaultCommandTimeout ', 10000);
 
-context('Open Weather - SERP', () => {
+context('Open Weather - SERP - UI Level', () => {
     before('Visit the main page', () => {
         cy.setCookie(Cookie.stickFooterPanel, 'false');
     })
@@ -52,7 +52,7 @@ context('Open Weather - SERP', () => {
         })
     })
 
-    //Data-driven testing can't work well on this test case ''cause of Cypress issue #408
+    //Data-driven testing can't work well on this test case 'cause of Cypress issue #408
     it("TC2 - Verify current city's weather is automatically displayed when openning the page", () => {
         const testCities = [
             { id: '2660764', name: 'Flamatt, CH' }
@@ -105,15 +105,32 @@ context('Open Weather - SERP', () => {
         })
     })
 
-    it("TC4 - Verify layout is broken on different screen sizes", () => {
+    it("TC4 - Verify city suggestions are displayed in the default measure system", () => {
+        const measureSystems = ['metric', 'imperial'];
+        const mockedDataFind = require('../Datasets/mockedDataFind.json');
 
+        cy.visit(URL.serpPage);
+        cy.wait('@dataLoaded');
+        cy.intercept({ pathname: API.dataFind }, req => {
+            req.continue(res => {
+                res.statusCode = 200;
+                res.body = mockedDataFind;
+            })
+        }).as('suggestionLoaded');
+
+        cy.wrap(measureSystems).each(system => {
+            cy.selectMeasureSystem(system);
+            cy.get(SERP.txtSearch).scrollIntoView().type('zurich,ch{enter}', { force: true });
+            cy.wait('@suggestionLoaded');
+            cy.get(SERP.citySuggestions).scrollIntoView().matchImageSnapshot(`${system} - Suggested Cities`);
+        })
     })
 
-    it("TC5 - Verify API response reflects exactly request's param", () => {
-
+    it("TC5 - Verify invalid data is validated", () => {
+        //The way to implement this test case will be similar to the TC1, so I won't write it down
     })
 
-    it("TC6 - Verify invalid data is validated", () => {
-
+    it("TC6 - Verify layout isn't broken on different screen sizes", () => {
+        //The way to implement this test case will be similar to the TC4, so I won't write it down
     })
 })

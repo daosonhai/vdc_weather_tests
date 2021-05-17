@@ -11,5 +11,9 @@
     "reporter": "cypress-multi-reporters",
     "reporterOptions": {
         "configFile": "cypress/Reports/ReportConfig/ReporterOptions.json"
+    },
+    "testFiles": "**/*.feature",
+    "env": {
+        "baseUrlApi": "https://openweathermap.org"
     }
 }
