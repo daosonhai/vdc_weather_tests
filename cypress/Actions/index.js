@@ -9,10 +9,7 @@ Cypress.Cookies.defaults({
 
 Cypress.on("test:after:run", (test, runnable) => {
     let videoName = Cypress.spec.name;
-    console(videoName)
-    videoName = videoName.replace('/.js.*', '.js');
-    console(videoName)
-    const urlVideo = 'Attachment/Videos/' + videoName + '.mp4';
-    console(urlVideo)
+    videoName = videoName.replace('/.js.*', '.js');    
+    const urlVideo = 'videos/' + videoName + '.mp4';    
     addContext({ test }, urlVideo);
 })
