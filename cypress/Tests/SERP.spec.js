@@ -67,7 +67,7 @@ context('Open Weather - SERP - UI Level', () => {
         })
     })
 
-    it("TC3 - Verify API error codes returned are handled properly", () => {
+    it.only("TC3 - Verify API error codes returned are handled properly", () => {
         const errorCodes = [
             { code: 500, body: { cod: 500, message: "Internal server error" } },
             { code: 422, body: { code: 422, message: "invalid input, please retype your city" } },
