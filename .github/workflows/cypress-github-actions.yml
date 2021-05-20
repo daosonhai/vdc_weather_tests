@@ -6,17 +6,41 @@ on:
     branches: [ main ]
 
 jobs:
-  cypress-test:
-    name: Cypress execution
+  cypress-run:
+    name: Execute UI tests
     runs-on: ubuntu-18.04
     container: cypress/browsers:node14.16.0-chrome89-ff86
     steps:
+      - name: Checkout source code
       - uses: actions/checkout@v2
 
-      - name: Install cypress and verify
+      - name: Install NPM dependencies
         run: |
           npm ci
           $(npm bin)/cypress verify
+      
       - name: execute all automated tests
         run: npm run cy:run:all
         continue-on-error: true
+        
+      - name: Copy test artifacts to public folder
+        run: |
+          mkdir public
+          cp -r cypress/Attachment/Videos public/videos
+          cp -r cypress/Attachment/Screenshots public/screenshots
+      
+      - name: Delete all previous test reports
+        run: npm run cy:report:remove
+        
+      - name: Merge all reports into a general file
+        run: npm run cy:report:combine
+
+      - name: Generate final report
+        run: npm run cy:report:generate
+      
+      - name: Hosting report page to GitHub Page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+        
