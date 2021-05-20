@@ -17,9 +17,6 @@ jobs:
         run: |
           npm ci
           $(npm bin)/cypress verify
-          
-      - name: Delete all previous test reports
-        run: npm run cy:report:remove
         
       - name: execute all automated tests
         run: npm run cy:run:all
