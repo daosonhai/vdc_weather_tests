@@ -14,13 +14,6 @@ function getConfigurationByFile(file) {
 module.exports = (on, config) => {
   addMatchImageSnapshotPlugin(on, config);
 
-  // on('before:browser:launch', (browser, launchOptions) => {
-  //   if (browser.isHeadless) {
-  //     launchOptions.args.push('--window-size=1000,660')
-  //     return launchOptions
-  //   }
-  // })
-
   const file = config.env.configFile || 'production';
 
   return getConfigurationByFile(file);

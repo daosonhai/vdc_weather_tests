@@ -1,0 +1,112 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-05-20T04:19:26.899Z",
+    "end": "2021-05-20T04:20:23.173Z",
+    "duration": 56274,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0b3bec03-0bb4-44ef-bfde-6c3f613f3c31",
+      "title": "",
+      "fullFile": "cypress/Tests/SERP.spec.js",
+      "file": "cypress/Tests/SERP.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "018e99e0-aa1b-4b17-b7ae-9efa6cbc08c3",
+          "title": "Open Weather - SERP - UI Level",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC3 - Verify API error codes returned are handled properly",
+              "fullTitle": "Open Weather - SERP - UI Level TC3 - Verify API error codes returned are handled properly",
+              "timedOut": null,
+              "duration": 56197,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const errorCodes = [{\n  code: 500,\n  body: {\n    cod: 500,\n    message: \"Internal server error\"\n  }\n}, {\n  code: 422,\n  body: {\n    code: 422,\n    message: \"invalid input, please retype your city\"\n  }\n}, {\n  code: 401,\n  body: {\n    cod: 401,\n    message: \"Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.\"\n  }\n}];\ncy.visit(_URL.default.serpPage);\ncy.wrap(errorCodes).each(({\n  code,\n  body\n}) => {\n  cy.intercept({\n    pathname: _API.default.dataFind\n  }, req => {\n    req.continue(res => {\n      res.statusCode = code;\n      res.body = body;\n    });\n  }).as(`mockedError${code}`);\n  cy.searchCity('Bien Hoa, VN');\n  cy.wait(`@mockedError${code}`).then(({\n    response\n  }) => {\n    expect(response.statusCode).to.equal(code);\n  });\n  switch (code) {\n    case 500:\n      //Assume a modal dialog is shown when error 500 is returned\n      cy.get(_Modal.default.frmErrorModal).should('be.visible');\n      break;\n    case 422:\n      //Assume an error validation message is shown when error 422 is returned\n      cy.get(_SERP.default.msgValidationError).should('be.visible').should('contain', body.message);\n      break;\n    case 401:\n      //Assume browser redirect to login page when error 401 is returned\n      cy.url().should('contain', 'login');\n      break;\n  }\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-refname=\"modal-error-modal\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-refname=\"modal-error-modal\"]`, but never found it.\n    at Context.eval (https://openweathermap.org/__cypress/tests?p=cypress\\Tests\\SERP.spec.js:356:48)",
+                "diff": null
+              },
+              "uuid": "f1499d02-88eb-4307-88d8-3dcc26037c5f",
+              "parentUUID": "018e99e0-aa1b-4b17-b7ae-9efa6cbc08c3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "f1499d02-88eb-4307-88d8-3dcc26037c5f"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 56197,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/Reports/Mochawesome",
+        "charts": true,
+        "quiet": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

@@ -8,6 +8,7 @@
     "video": true,
     "videosFolder": "cypress/Attachment/Videos",
     "videoUploadOnPasses": false,
+    "testFiles": "**/*.spec.js",
     "reporter": "cypress-multi-reporters",
     "reporterOptions": {
         "configFile": "cypress/Reports/ReportConfig/ReporterOptions.json"
