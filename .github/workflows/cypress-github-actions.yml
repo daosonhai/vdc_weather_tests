@@ -17,7 +17,10 @@ jobs:
         run: |
           npm ci
           $(npm bin)/cypress verify
-      
+          
+      - name: Delete all previous test reports
+        run: npm run cy:report:remove
+        
       - name: execute all automated tests
         run: npm run cy:run:all
         continue-on-error: true
@@ -27,9 +30,6 @@ jobs:
           mkdir public
           cp -r cypress/Attachment/Videos public/videos
           cp -r cypress/Attachment/Screenshots public/screenshots
-      
-      - name: Delete all previous test reports
-        run: npm run cy:report:remove
         
       - name: Merge all reports into a general file
         run: npm run cy:report:combine
