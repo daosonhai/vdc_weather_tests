@@ -8,14 +8,16 @@ Given(`I visit OpenWeather page`, () => {
     cy.visit(URL.serpPage);
 })
 
-When(`I enter an weird {keyword}`, (keyword) => {
-    cy.get(SERP.txtSearch).scrollIntoView().type(String(keyword), { delay: 100, force: true });
+When(`I enter an weird {string}`, keyword => {
+    cy.get(SERP.txtSearch).scrollIntoView().type(keyword, { delay: 100, force: true });
 })
 
-And('I click to search', () => {
+And('I click the Search button', () => {
     cy.get(SERP.btnSubmit).click();
 })
 
-Then('A hint message is displayed for me', () => {
-    cy.get(SERP.msgValidationError).should('be.visible');
+Then('I see a hint message as following result table', datatable => {
+    datatable.hashes().forEach(row => {
+        cy.get(SERP.msgValidationError).should('be.visible').and('contain', row.result);
+    })
 })
