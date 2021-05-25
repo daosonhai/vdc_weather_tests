@@ -1,10 +1,9 @@
 FROM cypress/base:12.1.0
 
-RUN mkdir /app
 WORKDIR /app
 
 COPY package.json .
-RUN npm install
+RUN npm install --save-dev cypress
 COPY . .
 
-RUN ["npm", "run", "cy:run:all"]
+RUN ["npx", "cypress", "verify"]
